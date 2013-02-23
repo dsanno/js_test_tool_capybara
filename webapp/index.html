@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>test_target</title>
+    <meta charset="utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script>
+        $(function (){
+            $('#check').on('click', function(e){
+                var inputtext = $('#user').attr('value');
+                $('#msg').text("確認中...")
+                $.getJSON("./status", {"name": inputtext}, function(res){
+                    if(res.status == "ok")
+                        $('#msg').text("利用可能です");
+                    else{
+                        $('#msg').text("利用できません");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <input id="user" type="text" >
+    <input id="check" type="button" value="確認">
+    <div id="msg" ></div>
+</body>
+</html>
